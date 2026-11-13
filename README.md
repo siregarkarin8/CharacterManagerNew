@@ -4,9 +4,11 @@ Deskripsi
 Character Manager adalah aplikasi Java sederhana yang dibuat untuk menerapkan konsep Object-Oriented Programming (OOP). Program ini menggunakan enum CharacterType, constructor overloading, encapsulation melalui getter dan setter, atribut mana, serta method isAlive() untuk mengelola data karakter.
 
 Screenshot Output
-![alt text](../tp3.png)
+![TP3](tp3.png)
 
 Struktur Folder
+
+```text
 Project_CharacterManager
 ├── README.md
 ├── output-tp3.png
@@ -18,6 +20,8 @@ Project_CharacterManager
                 └── model
                     ├── Character.java
                     └── CharacterType.java
+```
+
 Fitur yang Diimplementasikan
 Enum CharacterType
 Constructor Overloading
