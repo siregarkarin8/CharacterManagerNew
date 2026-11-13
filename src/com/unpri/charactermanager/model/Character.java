@@ -110,4 +110,21 @@ public class Character {
                 ", atk=" + attackPower +
                 ", mana=" + mana + '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+
+    if (this == obj) {
+        return true;
+    }
+
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+
+    Character other = (Character) obj;
+
+    return name.equalsIgnoreCase(other.name);
+    }
+
 }

@@ -28,8 +28,40 @@ Method isAlive()
 Simulasi level up karakter
 Override method toString()
 
-Identitas
-Nama Lengkap: Karyn Natashia Siregar
-NIM: 253303621220
-
 Google Docs (Bagian D): [ISI_LINK_GOOGLE_DOCS](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQADKbmABdrOT5O3FwvbyGRZAVrmOf9n6Q5jkHeE9KdBFQk?e=ZdVWFV)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TP5 - Character Manager Enhancement
+Fitur yang Ditambahkan
+
+Implementasi method equals()
+Penolakan karakter dengan nama duplikat
+Implementasi findByName()
+Implementasi getAverageLevel()
+Implementasi findByType()
+Implementasi countByType()
+
+Screenshot Output TP5
+![TP5](screenshots/tp5.png)
+
+Screenshot menunjukkan:
+
+Penolakan karakter duplikat.
+Hasil pencarian karakter berdasarkan nama.
+Eksperimen reference menggunakan getAllCharacters().
+Perhitungan rata-rata level karakter.
+Pencarian karakter berdasarkan tipe.
+Penghitungan jumlah karakter berdasarkan tipe.
+
+Fitur Tambahan (Bagian C)
+countByType(CharacterType type)
+Method ini digunakan untuk menghitung jumlah karakter berdasarkan tipe tertentu.
+
+Contoh:
+manager.countByType(CharacterType.WARRIOR);
+
+Google Docs (Bagian D): [TP5](https://ap.wps.com/cms/docs/d/cbCaivqT0qtFzBAz?platform=pc&refer=copylink)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
