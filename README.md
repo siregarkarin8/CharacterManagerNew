@@ -7,6 +7,8 @@ Screenshot Output
 ![TP3](tp3.png)
 
 Struktur Folder
+
+```text
 Project_CharacterManager
 ├── README.md
 ├── output-tp3.png
@@ -18,6 +20,8 @@ Project_CharacterManager
                 └── model
                     ├── Character.java
                     └── CharacterType.java
+```
+
 Fitur yang Diimplementasikan
 Enum CharacterType
 Constructor Overloading
