@@ -98,6 +98,29 @@ Alasan Pemilihan
 
 Karakter tambahan digunakan untuk menunjukkan variasi tipe karakter dan memberikan data yang cukup untuk menghitung statistik rata-rata level secara dinamis.
 
+Struktur Folder TP8
+
+```text
+CharacterManagerNew
+├── README.md
+├── tp3.png
+├── screenshots
+│   ├── tp5.png
+│   ├── tp8-before.png
+│   └── tp8-after.png
+└── src
+    ├── Main.java
+    └── com
+        └── unpri
+            └── charactermanager
+                ├── model
+                │   ├── Character.java
+                │   ├── CharacterManager.java
+                │   └── CharacterType.java
+                └── view
+                    └── MainWindow.java
+```
+
 
 Google Docs (Bagian D): [TP8](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQAbmla5f8JuRYS3-MF2JoUcATAZl6GZCXxTnMkru664wGc?e=HMhOug)
 
