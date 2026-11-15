@@ -192,3 +192,121 @@ CharacterManagerNew
 ```
 
 Google Docs (Bagian D): [TP10](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQDrsZsyw0DNRLjsvZVr5hz-AVMfmnXl0pa3f7PjcGQz4Yk?e=LgkQJX)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Character Manager — TP12
+
+Sprint #5: Layout, UI Responsif & Analisis MVC
+
+Deskripsi Proyek
+
+Character Manager merupakan aplikasi sederhana berbasis Java Swing untuk mengelola data karakter RPG.
+
+Pada TP12 Sprint #5, aplikasi dikembangkan dengan menerapkan Layout Manager untuk menghasilkan tampilan antarmuka yang lebih terstruktur dan responsif terhadap perubahan ukuran jendela.
+
+Fitur Aplikasi
+
+-Menampilkan daftar karakter.
+-Menampilkan nama, role, dan level karakter.
+-Menampilkan statistik karakter.
+-Menampilkan legenda berdasarkan jenis role.
+-Menambahkan karakter baru.
+-Menampilkan informasi HP dan ATK melalui tooltip.
+-Menggunakan scrollbar untuk daftar karakter.
+-Menyesuaikan tampilan ketika ukuran jendela berubah.
+
+Struktur Folder
+
+```text
+CharacterManagerNew
+├── README.md
+├── tp3.png
+├── screenshots
+│   ├── tp5.png
+│   ├── outputtp8_sebelum.png
+│   ├── outputtp8_sesudah.png
+│   ├── Sebelum(v0.3)tp10.png
+│   ├── Sesudah(v0.4)tp10.png
+│   ├── 01-ukuran-awal.png
+│   ├── 02-jendela-dilebarkan.png
+│   └── 03-jendela-dikecilkan.png
+└── src
+    ├── Main.java
+    └── com
+        └── unpri
+            └── charactermanager
+                ├── model
+                │   ├── Character.java
+                │   ├── CharacterManager.java
+                │   └── CharacterType.java
+                └── view
+                    ├── AppTheme.java
+                    └── MainWindow.java
+```
+
+Implementasi Layout Manager
+
+Pada Sprint #5, aplikasi menggunakan beberapa Layout Manager:
+
+1. BorderLayout
+Digunakan pada panel utama untuk membagi tampilan menjadi empat bagian, yaitu NORTH, CENTER, EAST, dan SOUTH.
+
+2. GridLayout
+Digunakan pada panel statistik dengan susunan 2 baris dan 2 kolom. GridLayout dipilih karena setiap komponen memiliki pembagian ruang yang sama.
+3. BoxLayout
+Digunakan pada panel Legend Role dengan arah vertikal agar daftar role tersusun dari atas ke bawah.
+4. JScrollPane
+Digunakan untuk membungkus daftar karakter sehingga pengguna dapat menggulir daftar ketika ruang tampilan tidak mencukupi.
+
+Wireframe Tampilan
+
++------------------------------------------------------+
+|                    HEADER (NORTH)                    |
+|  Character Manager                  Tambah Karakter  |
+|  Total Karakter     Rata-rata Level                  |
+|  Level Tertinggi    Jumlah Role                       |
++--------------------------------------+---------------+
+|                                      |               |
+|           CHARACTER LIST             |  LEGEND ROLE  |
+|                                      |               |
+|  [Character Card 1]                  |  WARRIOR      |
+|  [Character Card 2]                  |  MAGE         |
+|  [Character Card 3]                  |  ARCHER       |
+|  [Character Card 4]                  |  HEALER       |
+|  [Character Card ...]                |               |
+|                                      |               |
+|             JScrollPane              |               |
++--------------------------------------+---------------+
+|                    STATUS BAR                        |
+|  Character Manager siap digunakan              v0.5 |
++------------------------------------------------------+
+
+Screenshot Implementasi
+1. ![Tampilan Ukuran Awal](screenshots/01-ukuran-awal.png)
+
+2. ![Tampilan Ketika Jendela Dilebarkan](screenshots/02-jendela-dilebarkan.png)
+
+3. ![Tampilan Ketika Jendela Dikecilkan!](screenshots/(v0.3)tp10.png)
+
+##Tabel Observasi Perubahan Ukuran Jendela
+
+| Kondisi | Prediksi | Hasil Pengamatan |
+|---|---|---|
+| Ukuran awal | Komponen ditampilkan sesuai ukuran awal jendela. | Semua bagian aplikasi terlihat dengan baik. |
+| Jendela dilebarkan | Komponen menyesuaikan ruang yang tersedia. | Daftar karakter melebar dan legend tetap berada di sebelah kanan. |
+| Jendela dikecilkan | Daftar karakter membutuhkan scrollbar ketika ruang tidak mencukupi. | Scrollbar vertikal muncul sehingga daftar karakter tetap dapat diakses. |
+
+Penjelasan Nested Panels
+
+Nested panels merupakan penggunaan panel di dalam panel lain untuk membagi dan mengatur komponen antarmuka. Pada aplikasi Character Manager, panel utama menggunakan BorderLayout sebagai wadah untuk beberapa panel lainnya. Di dalamnya terdapat panel header, panel statistik, panel daftar karakter, dan panel legend. Setiap panel dapat menggunakan Layout Manager yang berbeda sesuai kebutuhan. Dengan nested panels, tampilan aplikasi menjadi lebih terorganisasi dan mudah dikembangkan.
+
+Alasan Pemilihan Layout
+
+GridLayout dipilih untuk bagian statistik karena komponen perlu ditampilkan dalam susunan baris dan kolom dengan ukuran yang sama. Sementara itu, BoxLayout dipilih untuk bagian Legend Role karena daftar role lebih sesuai disusun secara vertikal. Untuk daftar karakter, GridLayout digunakan agar setiap kartu memiliki susunan yang konsisten. Layout tersebut kemudian ditempatkan dalam JScrollPane agar daftar tetap dapat diakses ketika ukuran jendela diperkecil.
+
+Pemisahan Model dan View (MVC)
+
+Aplikasi ini menerapkan konsep pemisahan Model dan View. Package model bertanggung jawab mengelola data dan logika karakter, sedangkan package view bertanggung jawab mengatur tampilan antarmuka menggunakan Java Swing. Pemisahan ini membuat kode lebih terstruktur dan memudahkan perubahan tampilan tanpa harus mengubah logika pengolahan data.
+
+Google Docs (Bagian D): [TP12](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQAgL0mMxQgIT7jPzp41MFPXATgCJMVpTxq3eVUk-UaNEnQ?e=CDFl6E)
