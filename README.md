@@ -68,4 +68,36 @@ manager.countByType(CharacterType.WARRIOR);
 Google Docs (Bagian D): [TP5](https://ap.wps.com/cms/docs/d/cbCaivqT0qtFzBAz?platform=pc&refer=copylink)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------
+
+TP8 - GUI Character Manager
+
+Deskripsi
+
+Pada TP8 aplikasi Character Manager dikembangkan dari aplikasi console menjadi aplikasi GUI menggunakan Java Swing. Data karakter ditampilkan pada jendela MainWindow secara dinamis menggunakan perulangan, serta ditambahkan statistik rata-rata level karakter.
+
+Screenshot Sebelum Perubahan
+
+![TP8 Before](screenshots/outputtp8_sebelum.png)
+
+Screenshot Sesudah Perubahan
+
+![TP8 After](screenshots/outputtp8_sesudah.png)
+
+Penjelasan Aliran Data (MVC)
+
+Data karakter dibuat di Main.java lalu disimpan ke dalam CharacterManager sebagai tempat pengelolaan data. MainWindow mengambil data dari CharacterManager menggunakan method getAllCharacters() dan menampilkannya ke GUI menggunakan JLabel. Dalam konsep MVC, Character dan CharacterManager berperan sebagai Model, sedangkan MainWindow berperan sebagai View yang menampilkan data kepada pengguna.
+
+Karakter Baru
+
+- Lennon (ARCHER, Level 4)
+- Ringo (HEALER, Level 6)
+- Arthur (WARRIOR, Level 20)
+
+Alasan Pemilihan
+
+Karakter tambahan digunakan untuk menunjukkan variasi tipe karakter dan memberikan data yang cukup untuk menghitung statistik rata-rata level secara dinamis.
+
+
+Google Docs (Bagian D): [TP8](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQAbmla5f8JuRYS3-MF2JoUcATAZl6GZCXxTnMkru664wGc?e=HMhOug)
 

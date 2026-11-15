@@ -1,8 +1,9 @@
 import com.unpri.charactermanager.model.Character;
 import com.unpri.charactermanager.model.CharacterManager;
 import com.unpri.charactermanager.model.CharacterType;
+import com.unpri.charactermanager.view.MainWindow;
 
-import java.util.ArrayList;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
@@ -10,65 +11,38 @@ public class Main {
 
         CharacterManager manager = new CharacterManager();
 
-        Character hero =
-                new Character("George",
+        manager.addCharacter(
+                new Character(
+                        "George",
                         CharacterType.WARRIOR,
-                        5);
+                        5));
 
-        Character wizard =
-                new Character("Paul",
+        manager.addCharacter(
+                new Character(
+                        "Paul",
                         CharacterType.MAGE,
-                        3);
+                        3));
 
-        Character duplicate =
-                new Character("George",
+        manager.addCharacter(
+                new Character(
+                        "Lennon",
                         CharacterType.ARCHER,
-                        8);
+                        4));
 
-        System.out.println("Tambah George : "
-                + manager.addCharacter(hero));
+        manager.addCharacter(
+                new Character(
+                        "Ringo",
+                        CharacterType.HEALER,
+                        6));
 
-        System.out.println("Tambah Paul : "
-                + manager.addCharacter(wizard));
+        manager.addCharacter(
+                new Character(
+                        "Arthur",
+                        CharacterType.WARRIOR,
+                        20));
 
-        System.out.println("Tambah George lagi : "
-                + manager.addCharacter(duplicate));
-
-        System.out.println();
-
-        System.out.println("Cari Paul:");
-        System.out.println(manager.findByName("Paul"));
-
-        System.out.println();
-
-        System.out.println("Total Character:");
-        System.out.println(manager.getTotalCharacters());
-
-        System.out.println();
-
-        ArrayList<Character> copy =
-                manager.getAllCharacters();
-
-        copy.clear();
-
-        System.out.println("Ukuran copy:");
-        System.out.println(copy.size());
-        System.out.println("Ukuran data asli:");
-    
-        System.out.println(manager.getTotalCharacters());
-        System.out.println();
-        System.out.println("Rata-rata level:");
-        System.out.println(manager.getAverageLevel());
-        System.out.println();
-        System.out.println("Karakter tipe WARRIOR:");
-
-        for (Character c : manager.findByType(CharacterType.WARRIOR)) {
-            System.out.println(c);
-        }
-        System.out.println();
-        System.out.println("JUMLAH WARRIOR:");
-        System.out.println(
-            manager.countByType(CharacterType.WARRIOR)
-        );
+        SwingUtilities.invokeLater(() -> {
+            new MainWindow(manager);
+        });
     }
 }
