@@ -133,7 +133,7 @@ Deskripsi
 Pada TP10 aplikasi Character Manager dikembangkan dengan penerapan tema menggunakan AppTheme.java. Pengaturan warna, font, dan border dipisahkan dari MainWindow agar tampilan aplikasi lebih terstruktur. Setiap kartu karakter memiliki warna sesuai role dan karakter dengan level minimal 5 mendapatkan teks berwarna emas serta tebal.
 
 Screenshot Output TP10
-![Sebelum](<Sebelum (v0.3)tp10.png>)
+![Sebelum](screenshots/Sebelum(v0.3)tp10.png)
 
 Screenshot Output TP10
 ![Sesudah](screenshots/Sesudah(v0.4)tp10.png)
@@ -191,4 +191,4 @@ CharacterManagerNew
                     └── MainWindow.java
 ```
 
-Google Docs (Bagian D): [TP10](c:\Users\ASUS\Downloads\JavaVisual_TP10_[253303621220]_[Karyn Natashia Siregar].docx)
+Google Docs (Bagian D): [TP10](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQDrsZsyw0DNRLjsvZVr5hz-AVMfmnXl0pa3f7PjcGQz4Yk?e=LgkQJX)
