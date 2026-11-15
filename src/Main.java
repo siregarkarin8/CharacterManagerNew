@@ -41,6 +41,12 @@ public class Main {
                         CharacterType.WARRIOR,
                         20));
 
+        manager.addCharacter(
+                new Character(
+                        "Robin",
+                        CharacterType.ARCHER,
+                        1));
+
         SwingUtilities.invokeLater(() -> {
             new MainWindow(manager);
         });

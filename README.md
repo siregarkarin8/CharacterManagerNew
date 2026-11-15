@@ -124,3 +124,71 @@ CharacterManagerNew
 
 Google Docs (Bagian D): [TP8](https://1drv.ms/w/c/3F04BCD0705D5ACD/IQAbmla5f8JuRYS3-MF2JoUcATAZl6GZCXxTnMkru664wGc?e=HMhOug)
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TP10 - Theming, Properti Komponen & Analisis MVC
+
+Deskripsi
+
+Pada TP10 aplikasi Character Manager dikembangkan dengan penerapan tema menggunakan AppTheme.java. Pengaturan warna, font, dan border dipisahkan dari MainWindow agar tampilan aplikasi lebih terstruktur. Setiap kartu karakter memiliki warna sesuai role dan karakter dengan level minimal 5 mendapatkan teks berwarna emas serta tebal.
+
+Screenshot Output TP10
+![Sebelum](screenshots/Sebelum (v0.3)tp10.png)
+
+Screenshot Output TP10
+![Sesudah](screenshots/Sesudah(v0.4)tp10.png)
+
+Fitur yang Diimplementasikan
+
+-Implementasi AppTheme.java pada package view.
+-Minimal tiga warna.
+-Minimal tiga font.
+-Minimal satu border.
+-Implementasi method colorFor().
+-Warna kartu karakter berdasarkan role.
+-Highlight level ≥ 5 dengan teks emas dan tebal.
+-Penggunaan konstanta batas level.
+-Penggunaan setOpaque(true).
+-Penggunaan pack() pada jendela.
+
+Properti Tambahan
+
+1. Tooltip Karakter
+
+Tooltip digunakan untuk menampilkan informasi karakter ketika kursor diarahkan ke kartu sehingga pengguna dapat melihat detail karakter dengan mudah.
+
+2. Border Berdasarkan Role
+
+Border dibedakan berdasarkan role karakter agar setiap tipe karakter lebih mudah dikenali melalui tampilannya.
+
+Analisis Pemisahan AppTheme dan Character
+
+Warna disimpan di AppTheme karena pengaturan warna merupakan bagian dari tampilan aplikasi (View), bukan data karakter (Model). Character bertugas menyimpan dan mengelola informasi karakter, sedangkan AppTheme mengatur tampilan visual berdasarkan role. Pemisahan ini membuat kode lebih terstruktur, mudah diperbarui, dan menjaga prinsip pemisahan tanggung jawab dalam konsep MVC.
+
+Dengan demikian, perubahan tema tidak perlu mengubah class Character sehingga Model tetap dapat digunakan tanpa bergantung pada komponen tampilan Java Swing.
+
+```text
+CharacterManagerNew
+├── README.md
+├── tp3.png
+├── screenshots
+│   ├── tp5.png
+│   ├── outputtp8_sebelum.png
+│   ├── outputtp8_sesudah.png
+│   ├── Sebelum(v0.3)tp10.png
+│   └── Sesudah(v0.4)tp10.png
+└── src
+    ├── Main.java
+    └── com
+        └── unpri
+            └── charactermanager
+                ├── model
+                │   ├── Character.java
+                │   ├── CharacterManager.java
+                │   └── CharacterType.java
+                └── view
+                    ├── AppTheme.java
+                    └── MainWindow.java
+```
+
+Google Docs (Bagian D): [TP10](c:\Users\ASUS\Downloads\JavaVisual_TP10_[253303621220]_[Karyn Natashia Siregar].docx)
