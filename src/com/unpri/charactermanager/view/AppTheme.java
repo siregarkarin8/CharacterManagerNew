@@ -27,6 +27,13 @@ public class AppTheme {
     public static final Color DEFAULT_COLOR =
             Color.LIGHT_GRAY;
 
+    // ===== SPRINT 6 =====
+    public static final Color ERROR =
+            Color.decode("#ff7675");
+
+    public static final Color SUCCESS =
+            Color.decode("#55efc4");
+
     public static final Font TITLE_FONT =
             new Font("SansSerif", Font.BOLD, 18);
 
@@ -40,11 +47,14 @@ public class AppTheme {
             new Font("SansSerif", Font.PLAIN, 12);
 
     public static final Border CARD_BORDER =
-            BorderFactory.createEmptyBorder(10, 10, 10, 10);
+            BorderFactory.createEmptyBorder(
+                    10, 10, 10, 10
+            );
 
     public static Color colorFor(CharacterType type) {
 
         switch (type) {
+
             case WARRIOR:
                 return WARRIOR_COLOR;
 
@@ -63,8 +73,10 @@ public class AppTheme {
     }
 
     public static Border borderFor(CharacterType type) {
+
         return BorderFactory.createLineBorder(
-                colorFor(type).darker(), 2
+                colorFor(type).darker(),
+                2
         );
     }
 }
