@@ -13,7 +13,10 @@ public class Character {
 
     // ===== CONSTRUCTOR 1 =====
     public Character(String name, CharacterType type, int level) {
-        this.name = name;
+
+        validateCharacter(name, type, level);
+
+        this.name = name.trim();
         this.type = type;
         this.level = level;
         this.hitPoints = calculateBaseHP();
@@ -23,14 +26,56 @@ public class Character {
 
     // ===== CONSTRUCTOR 2 =====
     public Character(int id, String name, CharacterType type,
-                     int level, int hitPoints, int attackPower, int mana) {
+                     int level, int hitPoints,
+                     int attackPower, int mana) {
+
+        validateCharacter(name, type, level);
+
+        if (hitPoints < 0 || attackPower < 0 || mana < 0) {
+            throw new IllegalArgumentException(
+                    "Stat karakter tidak boleh negatif"
+            );
+        }
+
         this.id = id;
-        this.name = name;
+        this.name = name.trim();
         this.type = type;
         this.level = level;
         this.hitPoints = hitPoints;
         this.attackPower = attackPower;
         this.mana = mana;
+    }
+
+    // ===== VALIDASI MODEL =====
+    private void validateCharacter(
+            String name,
+            CharacterType type,
+            int level) {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Nama tidak boleh kosong"
+            );
+        }
+
+        if (type == null) {
+            throw new IllegalArgumentException(
+                    "Role wajib dipilih"
+            );
+        }
+
+        if (level < 1 || level > 99) {
+            throw new IllegalArgumentException(
+                    "Level harus 1-99"
+            );
+        }
+
+        // Mini Challenge Sprint 6
+        if (type == CharacterType.MAGE && level > 60) {
+            throw new IllegalArgumentException(
+                    "MAGE tidak boleh memiliki level di atas 60"
+            );
+        }
     }
 
     // ===== HELPER METHOD =====
@@ -77,9 +122,8 @@ public class Character {
     }
 
     public void setLevel(int level) {
-        if (level < 1) {
-            throw new IllegalArgumentException("Level minimal adalah 1");
-        }
+
+        validateCharacter(name, type, level);
 
         this.level = level;
         this.hitPoints = calculateBaseHP();
@@ -87,8 +131,11 @@ public class Character {
     }
 
     public void setMana(int mana) {
+
         if (mana < 0) {
-            throw new IllegalArgumentException("Mana tidak boleh negatif");
+            throw new IllegalArgumentException(
+                    "Mana tidak boleh negatif"
+            );
         }
 
         this.mana = mana;
@@ -102,6 +149,7 @@ public class Character {
     // ===== toString =====
     @Override
     public String toString() {
+
         return "Character{id=" + id +
                 ", name='" + name + '\'' +
                 ", type=" + type +
@@ -111,20 +159,21 @@ public class Character {
                 ", mana=" + mana + '}';
     }
 
+    // ===== EQUALS =====
     @Override
     public boolean equals(Object obj) {
 
-    if (this == obj) {
-        return true;
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null ||
+                getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Character other = (Character) obj;
+
+        return name.equalsIgnoreCase(other.name);
     }
-
-    if (obj == null || getClass() != obj.getClass()) {
-        return false;
-    }
-
-    Character other = (Character) obj;
-
-    return name.equalsIgnoreCase(other.name);
-    }
-
 }

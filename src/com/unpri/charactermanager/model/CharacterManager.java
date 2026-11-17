@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CharacterManager {
 
     private ArrayList<Character> characters;
+
     public CharacterManager() {
         characters = new ArrayList<>();
     }
@@ -56,45 +57,66 @@ public class CharacterManager {
 
     public double getAverageLevel() {
 
-    if (characters.isEmpty()) {
-        return 0;
+        if (characters.isEmpty()) {
+            return 0;
+        }
+
+        int totalLevel = 0;
+
+        for (Character c : characters) {
+            totalLevel += c.getLevel();
+        }
+
+        return (double) totalLevel / characters.size();
     }
 
-    int totalLevel = 0;
-
-    for (Character c : characters) {
-        totalLevel += c.getLevel();
-    }
-
-    return (double) totalLevel / characters.size();
-    }
     public ArrayList<Character> findByType(CharacterType type) {
 
-        
+        ArrayList<Character> result = new ArrayList<>();
 
-    ArrayList<Character> result = new ArrayList<>();
+        for (Character c : characters) {
 
-    for (Character c : characters) {
-
-        if (c.getType() == type) {
-            result.add(c);
+            if (c.getType() == type) {
+                result.add(c);
+            }
         }
+
+        return result;
     }
 
-    return result;
-    }
     /**
-    * Menghitung jumlah karakter
-    * berdasarkan tipe tertentu.
-    */
+     * Menghitung jumlah karakter
+     * berdasarkan tipe tertentu.
+     */
     public int countByType(CharacterType type) {
-    int count = 0;
-    for (Character c : characters) {
 
-        if (c.getType() == type) {
-            count++;
+        int count = 0;
+
+        for (Character c : characters) {
+
+            if (c.getType() == type) {
+                count++;
+            }
         }
+
+        return count;
     }
-    return count;
-    } 
+
+    /**
+     * Mengembalikan true jika sudah ada
+     * karakter bernama sama.
+     */
+    public boolean isNameTaken(String name) {
+
+        for (Character c : getAllCharacters()) {
+
+            if (c.getName()
+                    .equalsIgnoreCase(name)) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
