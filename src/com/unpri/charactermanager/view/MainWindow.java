@@ -16,15 +16,21 @@ public class MainWindow extends JFrame {
 
     private JPanel rootPanel;
     private JPanel cardsPanel;
+    private JPanel statsPanel;
+
     private JLabel statusLabel;
+    private JLabel totalLabel;
+    private JLabel averageLabel;
+    private JLabel highestLabel;
+    private JLabel roleLabel;
 
     public MainWindow(CharacterManager manager) {
 
         this.manager = manager;
 
-        setTitle("Character Manager v0.5");
+        setTitle("Character Manager v0.6");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(500, 350));
+        setMinimumSize(new Dimension(700, 450));
 
         rootPanel = new JPanel(new BorderLayout(10, 10));
         rootPanel.setBorder(AppTheme.CARD_BORDER);
@@ -32,6 +38,15 @@ public class MainWindow extends JFrame {
         setContentPane(rootPanel);
 
         createHeader();
+
+        rootPanel.add(
+                new CharacterFormPanel(
+                        manager,
+                        this::refreshList
+                ),
+                BorderLayout.WEST
+        );
+
         createCharacterList();
         createLegend();
         createStatusBar();
@@ -49,29 +64,25 @@ public class MainWindow extends JFrame {
         JLabel title = new JLabel("Character Manager");
         title.setFont(AppTheme.TITLE_FONT);
 
-        JButton tambahButton = new JButton("Tambah Karakter");
-        tambahButton.addActionListener(e -> addCharacter());
-
         headerPanel.add(title, BorderLayout.WEST);
-        headerPanel.add(tambahButton, BorderLayout.EAST);
 
-        JPanel statsPanel = new JPanel(new GridLayout(2, 2, 10, 5));
+        statsPanel = new JPanel(new GridLayout(2, 2, 10, 5));
 
-        statsPanel.add(new JLabel(
-                "Total Karakter: " + manager.getTotalCharacters()));
+        totalLabel = new JLabel();
+        averageLabel = new JLabel();
+        highestLabel = new JLabel();
+        roleLabel = new JLabel();
 
-        statsPanel.add(new JLabel(
-                "Rata-rata Level: " + manager.getAverageLevel()));
-
-        statsPanel.add(new JLabel(
-                "Level Tertinggi: " + getHighestLevel()));
-
-        statsPanel.add(new JLabel(
-                "Jumlah Role: " + CharacterType.values().length));
+        statsPanel.add(totalLabel);
+        statsPanel.add(averageLabel);
+        statsPanel.add(highestLabel);
+        statsPanel.add(roleLabel);
 
         headerPanel.add(statsPanel, BorderLayout.SOUTH);
 
         rootPanel.add(headerPanel, BorderLayout.NORTH);
+
+        updateStatistics();
     }
 
     // CHARACTER LIST
@@ -79,7 +90,7 @@ public class MainWindow extends JFrame {
 
         cardsPanel = new JPanel(new GridLayout(0, 1, 5, 5));
 
-        refreshContent();
+        refreshList();
 
         JPanel wrapperPanel = new JPanel(new BorderLayout());
         wrapperPanel.add(cardsPanel, BorderLayout.NORTH);
@@ -90,7 +101,8 @@ public class MainWindow extends JFrame {
         rootPanel.add(scroll, BorderLayout.CENTER);
     }
 
-    private void refreshContent() {
+    // REFRESH LIST
+    private void refreshList() {
 
         cardsPanel.removeAll();
 
@@ -107,10 +119,12 @@ public class MainWindow extends JFrame {
             card.setOpaque(true);
 
             card.setBackground(
-                    AppTheme.colorFor(character.getType()));
+                    AppTheme.colorFor(character.getType())
+            );
 
             card.setBorder(
-                    AppTheme.borderFor(character.getType()));
+                    AppTheme.borderFor(character.getType())
+            );
 
             card.setFont(AppTheme.NORMAL_FONT);
 
@@ -132,19 +146,47 @@ public class MainWindow extends JFrame {
             cardsPanel.add(card);
         }
 
+        updateStatistics();
+
         cardsPanel.revalidate();
         cardsPanel.repaint();
+    }
+
+    // UPDATE STATISTICS
+    private void updateStatistics() {
+
+        totalLabel.setText(
+                "Total Karakter: " + manager.getTotalCharacters()
+        );
+
+        averageLabel.setText(
+                String.format(
+                        "Rata-rata Level: %.1f",
+                        manager.getAverageLevel()
+                )
+        );
+
+        highestLabel.setText(
+                "Level Tertinggi: " + getHighestLevel()
+        );
+
+        roleLabel.setText(
+                "Jumlah Role: " + CharacterType.values().length
+        );
     }
 
     // LEGEND
     private void createLegend() {
 
         JPanel legendPanel = new JPanel();
+
         legendPanel.setLayout(
-                new BoxLayout(legendPanel, BoxLayout.Y_AXIS));
+                new BoxLayout(legendPanel, BoxLayout.Y_AXIS)
+        );
 
         legendPanel.setBorder(
-                new EmptyBorder(5, 5, 5, 5));
+                new EmptyBorder(5, 5, 5, 5)
+        );
 
         JLabel legendTitle = new JLabel("Legend Role");
         legendTitle.setFont(AppTheme.TITLE_FONT);
@@ -175,9 +217,11 @@ public class MainWindow extends JFrame {
 
         JPanel statusPanel = new JPanel(new BorderLayout());
 
-        statusLabel = new JLabel("Character Manager siap digunakan");
+        statusLabel = new JLabel(
+                "Character Manager siap digunakan"
+        );
 
-        JLabel versionLabel = new JLabel("v0.5");
+        JLabel versionLabel = new JLabel("v0.6");
 
         statusPanel.add(statusLabel, BorderLayout.WEST);
         statusPanel.add(versionLabel, BorderLayout.EAST);
@@ -185,73 +229,13 @@ public class MainWindow extends JFrame {
         rootPanel.add(statusPanel, BorderLayout.SOUTH);
     }
 
-    // ADD CHARACTER
-    private void addCharacter() {
-
-        String nama = JOptionPane.showInputDialog(
-                this,
-                "Masukkan nama karakter:"
-        );
-
-        if (nama == null || nama.trim().isEmpty()) {
-            return;
-        }
-
-        String levelText = JOptionPane.showInputDialog(
-                this,
-                "Masukkan level karakter:"
-        );
-
-        if (levelText == null || levelText.trim().isEmpty()) {
-            return;
-        }
-
-        int level;
-
-        try {
-            level = Integer.parseInt(levelText);
-
-        } catch (NumberFormatException ex) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Level harus berupa angka!"
-            );
-
-            return;
-        }
-
-        CharacterType role = (CharacterType) JOptionPane.showInputDialog(
-                this,
-                "Pilih role:",
-                "Role Character",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                CharacterType.values(),
-                CharacterType.WARRIOR
-        );
-
-        if (role == null) {
-            return;
-        }
-
-        manager.addCharacter(
-                new Character(nama, role, level)
-        );
-
-        refreshContent();
-
-        statusLabel.setText("Karakter berhasil ditambahkan");
-
-        rootPanel.revalidate();
-        rootPanel.repaint();
-    }
-
+    // GET HIGHEST LEVEL
     private int getHighestLevel() {
 
         int highest = 0;
 
         for (Character character : manager.getAllCharacters()) {
+
             if (character.getLevel() > highest) {
                 highest = character.getLevel();
             }
